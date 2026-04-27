@@ -23,3 +23,7 @@ A school project focused on developing a comprehensive online portal where stude
 
 Update 23/04/26
 -First upload
+Update 27/04/26
+- Fixed several bugs in the system
+- Improved overall code structure
+- Added new features and functionalities
