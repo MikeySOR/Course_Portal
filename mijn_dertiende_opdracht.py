@@ -9,23 +9,23 @@ import random
 
 gebruikers = []
 vakken = {
-    "1": ("Wiskunde", "Bjorn Deboodt", 450,
+    "1": ("Wiskunde", "876545678876","Bjorn Deboodt", 450,
           "Het ontrafelen van wiskundige structuren, intellectuele puzzels en problemen analyseren met behulp van logische gedachtestappen"),
-    "2": ("Python", "Kenny Vanbellinghen", 250,
+    "2": ("Python", "367845635476","Kenny Vanbellinghen", 250,
           "Opleiding Softwareprogrammeur leer je creatief en probleemoplossend denken."),
-    "3": ("Java", "Jan Willems", 250,
+    "3": ("Java", "890132875634", "Jan Willems", 250,
           "Een hoogwaardige, algemene, geheugenveilige, objectgeoriënteerde programmeertaal"),
-    "4": ("Linux", "Bryan DeLeeuw", 300,
+    "4": ("Linux", "794534376015", "Bryan DeLeeuw", 300,
           "Kerncomponent in een besturingssysteem dat de centrale verwerkingseenheid (CPU), het geheugen en de randapparatuur op een computer beheert."),
-    "5": ("PhotoShop", "Piet Timmermans", 200,
+    "5": ("PhotoShop", "836578934215", "Piet Timmermans", 200,
           "Een grafisch programma ontwikkeld door Adobe voor het met de computer bewerken van foto's en ander digitaal beeldmateriaal."),
-    "6": ("Engels", "Bob Lammertyne", 150,
+    "6": ("Engels", "784563547825", "Bob Lammertyne", 150,
           "Een Indo-Europese taal"),
-    "7": ("Hardwarebeheer", "Lynn Peeters", 350,
+    "7": ("Hardwarebeheer", "968745356785", "Lynn Peeters", 350,
           "De processen, tools en strategieën voor het beheer van de fysieke onderdelen van computers en gerelateerde systemen."),
-    "8": ("Cyber Security", "Patrick Vanbever", 400,
+    "8": ("Cyber Security", "692735143907", "Patrick Vanbever", 400,
           "Processen, aanbevolen procedures, en technologische oplossingen die je helpen kritieke systemen, gegevens en netwerken te beschermen tegen digitale aanvallen."),
-    "9": ("Netwerkbeheer", "Max Vertongen", 300,
+    "9": ("Netwerkbeheer", "392018374655", "Max Vertongen", 300,
           "Het proces van het ontwerpen, beheren, monitoren en beveiligen van IT-netwerken.")
 }
 
@@ -126,7 +126,7 @@ Welk vak geef je?
                 vak = vakken[vak_keuze][0]
             
             else:
-                print("Ongeldige keuze")
+                print("|Ongeldige keuze\n")
                 continue
 
             code = random.randint(1000, 99999999999)
@@ -249,8 +249,9 @@ def Cursussen(gebruiker):
         print("_" *33)
         
         
-        for key, (vak, leerkracht, prijs, beschrijving) in vakken.items():
+        for key, (vak, serienummer, leerkracht, prijs, beschrijving) in vakken.items():
             print(f"[{key}] {vak} ")
+            print(f"       -Serienummer: {serienummer}")
             print(f"       -Leerkracht: {leerkracht}")
             print(f"       -Prijs: €{prijs}")
             print(f"       -{beschrijving}")
@@ -265,11 +266,11 @@ def Cursussen(gebruiker):
             
             
             if antwoord in vakken:
-                vak, leerkracht, prijs, beschrijving = vakken[antwoord]
+                vak, serienummer, leerkracht, prijs, beschrijving = vakken[antwoord]
                 gekozen_vakken = gebruiker["gekozen_vakken"]
                 
     
-                if gebruiker["Functie"] == "1" and vak == gebruiker["gegeven_vak"]:
+                if gebruiker["Functie"] == "1" and vak == gebruiker.get("gegeven_vak"):
                     print("Je kan je eigen vak niet aankopen.")
                     continue
                 
@@ -277,7 +278,7 @@ def Cursussen(gebruiker):
                     print("Je hebt dit vak al gekozen.")
                 
                 else:
-                    gekozen_vakken.append((vak, leerkracht, prijs))
+                    gekozen_vakken.append((vak, serienummer, leerkracht, prijs))
                     print(f"{vak} is toegevoegd aan uw betalingen.")
                 
             elif antwoord == "0":
@@ -317,8 +318,8 @@ def Betalingen(gebruiker):
         if not gekozen_vakken:
             print("Geen vakken om te betalen.")
         else:
-            for i, (vak, leerkracht, prijs) in enumerate(gekozen_vakken, start=1):
-                print(f"{i}. {vak} ({leerkracht}) - €{prijs}")
+            for i, (vak, serienummer, leerkracht, prijs) in enumerate(gekozen_vakken, start=1):
+                print(f"{i}. {vak} ({serienummer}) ({leerkracht}) - €{prijs}")
                 totaal += prijs
         
 
@@ -379,8 +380,8 @@ def Mijn_cursussen(gebruiker):
         if not mijn_cursussen:
             print("Je hebt nog geen cursussen gekocht.")
         else:
-            for i, (vak, leerkracht, prijs) in enumerate(mijn_cursussen, start=1):
-                print(f"{i}. {vak} ({leerkracht}) - €{prijs}")
+            for i, (vak, serienummer, leerkracht, prijs) in enumerate(mijn_cursussen, start=1):
+                print(f"{i}. {vak} ({serienummer}) ({leerkracht}) - €{prijs}")
         
         print("0: Terug")
         print("_" *27)
