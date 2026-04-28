@@ -32,3 +32,14 @@ Update 27/04/26
 - Improved overall code structure
 
 - Added new features and functionalities
+
+Update 28/04/26
+### Latest Update
+
+- Fixed several bugs
+
+- Improved textures
+
+- Minor performance improvements
+
+
